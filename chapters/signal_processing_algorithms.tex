@@ -1,0 +1,60 @@
+% projekt/rozdzialy/algorytmy_przetwarzania.tex
+% project/chapters/signal_processing_algorithms.tex
+\section{Algorytmy Przetwarzania Sygnałów GNSS}
+
+\subsection{Filtracja Kalmana}
+Filtr Kalmana jest optymalnym estymatorem stanu układu dynamicznego, który minimalizuje średni kwadrat błędu estymacji. W kontekście GNSS, filtr Kalmana jest stosowany do estymacji pozycji, prędkości i innych parametrów ruchu.
+
+\subsubsection{Równania Filtra Kalmana}
+\begin{align}
+\hat{x}_{k|k-1} &= F_{k-1} \hat{x}_{k-1|k-1} + B_{k-1} u_{k-1} \\
+P_{k|k-1} &= F_{k-1} P_{k-1|k-1} F_{k-1}^T + Q_{k-1} \\
+K_k &= P_{k|k-1} H_k^T (H_k P_{k|k-1} H_k^T + R_k)^{-1} \\
+\hat{x}_{k|k} &= \hat{x}_{k|k-1} + K_k (z_k - H_k \hat{x}_{k|k-1}) \\
+P_{k|k} &= (I - K_k H_k) P_{k|k-1}
+\end{align}
+
+gdzie:
+\begin{itemize}
+    \item \( \hat{x}_{k|k-1} \) - prognoza stanu w chwili \( k \) na podstawie informacji dostępnych do chwili \( k-1 \)
+    \item \( P_{k|k-1} \) - macierz kowariancji błędu prognozy
+    \item \( K_k \) - macierz wzmocnienia Kalmana
+    \item \( \hat{x}_{k|k} \) - estymowany stan w chwili \( k \)
+    \item \( P_{k|k} \) - macierz kowariancji błędu estymacji
+    \item \( F_k \) - macierz przejścia stanu
+    \item \( B_k \) - macierz kontrolna
+    \item \( u_k \) - wektor wejściowy
+    \item \( Q_k \) - macierz szumu procesu
+    \item \( H_k \) - macierz obserwacji
+    \item \( R_k \) - macierz szumu pomiarowego
+    \item \( z_k \) - wektor pomiarowy
+\end{itemize}
+
+\subsection{Estymacja Pozycji}
+Estymacja pozycji w GNSS polega na rozwiązaniu zestawu równań, które opisują odległości między odbiornikiem a satelitami. Najczęściej stosowaną metodą jest metoda najmniejszych kwadratów (LS).
+
+\subsubsection{Równania Estymacji Pozycji}
+\[
+\mathbf{d} = \mathbf{H} \mathbf{x} + \mathbf{v}
+\]
+gdzie:
+\begin{itemize}
+    \item \( \mathbf{d} \) - wektor odległości satelita-odbiornik
+    \item \( \mathbf{H} \) - macierz geometryczna
+    \item \( \mathbf{x} \) - wektor nieznanych współrzędnych odbiornika i błędów zegara
+    \item \( \mathbf{v} \) - wektor szumu pomiarowego
+\end{itemize}
+
+Rozwiązanie problemu najmniejszych kwadratów:
+\[
+\hat{\mathbf{x}} = (\mathbf{H}^T \mathbf{H})^{-1} \mathbf{H}^T \mathbf{d}
+\]
+
+\subsection{Synchronizacja Czasu}
+Synchronizacja czasu jest kluczowym aspektem w GNSS, ponieważ dokładność pomiarów odległości zależy od precyzyjnej synchronizacji zegarów satelitów i odbiorników. Techniki synchronizacji obejmują zarówno bezpośrednie korekty zegara, jak i zaawansowane algorytmy estymacji błędów zegara.
+
+\subsubsection{Równania Synchronizacji Czasu}
+\[
+\Delta t = t_{\text{sat}} - t_{\text{odbiornik}}
+\]
+gdzie \( \Delta t \) to różnica czasu między zegarem satelity \( t_{\text{sat}} \) a zegarem odbiornika \( t_{\text{odbiornik}} \).

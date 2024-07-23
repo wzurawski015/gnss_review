@@ -1,0 +1,48 @@
+# Ignore auxiliary files created by LaTeX/TeX
+*.aux
+*.bbl
+*.blg
+*.brf
+*.log
+*.nav
+*.out
+*.snm
+*.toc
+*.lof
+*.lot
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.synctex
+*.dvi
+*.xdv
+
+# Ignore PDF files (if you don't want to track generated PDFs)
+*.pdf
+
+# Ignore files created by editor/IDE
+*~
+*.swp
+*.bak
+*.backup
+*.tmp
+*.temp
+
+# Ignore directory for build tools
+_build/
+build/
+dist/
+
+# Ignore Python bytecode files
+*.pyc
+__pycache__/
+
+# Ignore any files in the "code" directory that are Python bytecode files
+kod/*.pyc
+kod/__pycache__/
+
+# Ignore the Makefile build artifacts
+*.dvi
+*.ps
+*.eps
+*.synctex(busy)

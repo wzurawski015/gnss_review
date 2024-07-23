@@ -1,0 +1,57 @@
+% projekt/rozdzialy/wplyw_atmosfery.tex
+% project/chapters/atmospheric_effects.tex
+\section{Wpływ Atmosfery na Sygnały GNSS}
+
+\subsection{Wpływ Jonosfery}
+Jonosfera jest warstwą atmosfery znajdującą się na wysokości od około 60 km do 1000 km nad powierzchnią Ziemi. Jest zjonizowana przez promieniowanie słoneczne, co powoduje, że ma znaczący wpływ na propagację sygnałów GNSS.
+
+\subsubsection{Opóźnienie Jonosferyczne}
+Opóźnienie jonosferyczne jest wynikiem refrakcji sygnałów GNSS w jonosferze. Jest ono odwrotnie proporcjonalne do kwadratu częstotliwości sygnału.
+
+\[
+\Delta t_{\text{iono}} = \frac{40.3}{f^2} \cdot \text{TEC}
+\]
+
+gdzie:
+\begin{itemize}
+    \item \( \Delta t_{\text{iono}} \) - opóźnienie jonosferyczne
+    \item \( f \) - częstotliwość sygnału GNSS
+    \item TEC - całkowita zawartość elektronów (Total Electron Content) w jonosferze
+\end{itemize}
+
+\subsubsection{Metody Kompensacji}
+Istnieją różne metody kompensacji opóźnienia jonosferycznego, w tym:
+\begin{itemize}
+    \item \textbf{Model Klobuchara}: Empiryczny model, który dostarcza współczynniki do obliczania opóźnienia jonosferycznego.
+    \item \textbf{Podwójne częstotliwości}: Wykorzystanie dwóch różnych częstotliwości sygnałów GNSS do obliczenia i skompensowania opóźnienia jonosferycznego.
+\end{itemize}
+
+\subsection{Wpływ Troposfery}
+Troposfera jest najniższą warstwą atmosfery, sięgającą do około 10-15 km nad powierzchnią Ziemi. Zawiera większość pary wodnej i aerozoli, co wpływa na propagację sygnałów GNSS.
+
+\subsubsection{Opóźnienie Troposferyczne}
+Opóźnienie troposferyczne składa się z dwóch komponentów: suchego i mokrego. Komponent suchy zależy głównie od ciśnienia atmosferycznego, podczas gdy komponent mokry zależy od zawartości pary wodnej.
+
+\[
+\Delta t_{\text{tropo}} = \Delta t_{\text{dry}} + \Delta t_{\text{wet}}
+\]
+
+\subsubsection{Metody Kompensacji}
+Metody kompensacji opóźnienia troposferycznego obejmują:
+\begin{itemize}
+    \item \textbf{Model Saastamoinena}: Empiryczny model, który uwzględnia ciśnienie, temperaturę i wilgotność do obliczenia opóźnienia troposferycznego.
+    \item \textbf{Korekcje na podstawie obserwacji meteorologicznych}: Użycie danych meteorologicznych do poprawy dokładności modeli opóźnienia troposferycznego.
+\end{itemize}
+
+\subsection{Wpływ Warunków Lokalnych}
+Warunki lokalne, takie jak topografia terenu, zabudowania i roślinność, mogą również wpływać na propagację sygnałów GNSS, powodując wielotorowość (multipath) i inne zakłócenia.
+
+\subsubsection{Wielotorowość (Multipath)}
+Wielotorowość jest efektem odbić sygnałów GNSS od powierzchni takich jak budynki, woda czy teren, co powoduje, że odbiornik odbiera sygnały z opóźnieniem.
+
+\subsubsection{Metody Kompensacji}
+Techniki redukcji efektów wielotorowości obejmują:
+\begin{itemize}
+    \item \textbf{Filtracja sygnałów}: Użycie zaawansowanych algorytmów filtracji w celu odrzucenia odbitych sygnałów.
+    \item \textbf{Projektowanie anten}: Użycie anten o wysokiej kierunkowości i odporności na wielotorowość.
+\end{itemize}

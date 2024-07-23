@@ -1,0 +1,54 @@
+% projekt/główny_dokument.tex
+% project/main_document.tex
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{geometry}
+\usepackage{longtable}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{array}
+\usepackage{biblatex}
+\addbibresource{bibliografia.bib}
+\geometry{a4paper}
+
+\title{Kompleksowa Analiza Technologii GNSS}
+\author{Twoje Imię}
+\date{\today}
+
+\lstset{
+  language=Python,
+  basicstyle=\ttfamily\footnotesize,
+  keywordstyle=\color{blue},
+  commentstyle=\color{green},
+  stringstyle=\color{red},
+  showstringspaces=false,
+  breaklines=true,
+  frame=single,
+  numbers=left,
+  numberstyle=\tiny\color{gray},
+  captionpos=b
+}
+
+\begin{document}
+\maketitle
+
+\tableofcontents
+
+\input{rozdzialy/wstep.tex}
+\input{rozdzialy/sygnaly_i_czestotliwosci.tex}
+\input{rozdzialy/qam.tex}
+\input{rozdzialy/korekcja_sygnalow.tex}
+\input{rozdzialy/wspomaganie_satelitarne.tex}
+\input{rozdzialy/algorytmy_przetwarzania.tex}
+\input{rozdzialy/synchronizacja_czasu.tex}
+\input{rozdzialy/wplyw_atmosfery.tex}
+\input{rozdzialy/integracja_gnss_ins.tex}
+\input{rozdzialy/podsumowanie.tex}
+
+\printbibliography % or \bibliography{bibliografia}
+
+\end{document}

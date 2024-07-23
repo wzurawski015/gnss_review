@@ -1,0 +1,30 @@
+% projekt/rozdzialy/korekcja_sygnalow.tex
+% project/chapters/correction_techniques.tex
+\section{Techniki Korekcji i Poprawki Sygnałów GNSS}
+
+\subsection{DGPS (Differential GPS)}
+DGPS jest techniką, która wykorzystuje stacje referencyjne umieszczone w znanych lokalizacjach do poprawy dokładności sygnałów GNSS. Stacje referencyjne odbierają sygnały GNSS i obliczają różnice między zmierzoną a znaną pozycją, generując poprawki dla użytkowników w okolicy.
+
+\[
+\Delta P = P_{\text{znane}} - P_{\text{zmierzone}}
+\]
+
+gdzie \( \Delta P \) to poprawka, \( P_{\text{znane}} \) to znana pozycja stacji referencyjnej, a \( P_{\text{zmierzone}} \) to zmierzona pozycja.
+
+\subsection{RTK (Real-Time Kinematic)}
+RTK jest techniką różnicową, która umożliwia osiągnięcie bardzo wysokiej dokładności (rzędu centymetrów) poprzez wykorzystywanie pomiarów fazowych sygnałów GNSS. RTK wymaga jednej lub więcej stacji referencyjnych, które przesyłają poprawki do użytkowników w czasie rzeczywistym.
+
+\[
+\Delta \phi = \phi_{\text{referencyjna}} - \phi_{\text{użytkownika}}
+\]
+
+gdzie \( \Delta \phi \) to poprawka fazy sygnału, \( \phi_{\text{referencyjna}} \) to faza sygnału odbieranego przez stację referencyjną, a \( \phi_{\text{użytkownika}} \) to faza sygnału odbieranego przez użytkownika.
+
+\subsection{PPP (Precise Point Positioning)}
+PPP jest techniką, która wykorzystuje precyzyjne efemerydy satelitów i dane o zegarach satelitarnych w połączeniu z zaawansowanymi modelami atmosferycznymi do osiągnięcia wysokiej dokładności bez potrzeby użycia stacji referencyjnych. PPP wymaga długiego czasu konwergencji, aby osiągnąć pełną dokładność.
+
+\[
+P_{\text{PPP}} = P_{\text{zmierzone}} + \Delta t_{\text{sat}} + \Delta t_{\text{odbiornik}} + \Delta \text{atmosfera}
+\]
+
+gdzie \( P_{\text{PPP}} \) to pozycja uzyskana za pomocą PPP, \( \Delta t_{\text{sat}} \) to błąd zegara satelity, \( \Delta t_{\text{odbiornik}} \) to błąd zegara odbiornika, a \( \Delta \text{atmosfera} \) to poprawka atmosferyczna.

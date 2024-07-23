@@ -1,0 +1,38 @@
+% projekt/rozdzialy/synchronizacja_czasu.tex
+% project/chapters/time_synchronization.tex
+\section{Teoria Synchronizacji Czasu}
+Synchronizacja czasu jest kluczowym aspektem w GNSS i obejmuje różne techniki i algorytmy mające na celu zapewnienie dokładnej synchronizacji zegarów satelitów i odbiorników.
+
+\subsection{Podstawy Synchronizacji Czasu}
+Synchronizacja czasu w GNSS opiera się na precyzyjnych pomiarach czasowych sygnałów satelitarnych. Każdy satelita GNSS posiada atomowy zegar, który dostarcza precyzyjne informacje czasowe. Odbiornik GNSS odbiera sygnały z kilku satelitów i porównuje czas nadania sygnału z czasem jego odbioru, co pozwala na obliczenie odległości do satelitów i synchronizację zegara odbiornika.
+
+\subsection{Algorytmy Estymacji Błędów Zegara}
+Algorytmy estymacji błędów zegara są stosowane do korekcji różnic czasowych między zegarami satelitów a zegarem odbiornika. Najczęściej stosowanym algorytmem jest filtr Kalmana, który estymuje błąd zegara na podstawie pomiarów różnic czasowych.
+
+\[
+\Delta t = t_{\text{sat}} - t_{\text{odbiornik}}
+\]
+
+gdzie \( \Delta t \) to różnica czasu między zegarem satelity \( t_{\text{sat}} \) a zegarem odbiornika \( t_{\text{odbiornik}} \).
+
+\subsection{Technologia White Rabbit}
+White Rabbit to zaawansowana technologia synchronizacji czasu, która łączy Ethernet z precyzyjnym protokołem synchronizacji czasu (PTP) oraz techniką cyfrowej kompensacji opóźnień (DDC). White Rabbit zapewnia synchronizację zegarów z dokładnością do sub-nanosekund, co jest kluczowe w aplikacjach wymagających ekstremalnej precyzji czasowej.
+
+\subsubsection{Architektura White Rabbit}
+Architektura White Rabbit opiera się na sieci Ethernet, w której węzły są wyposażone w zegary atomowe lub wysokiej jakości oscylatory. Protokół PTP jest używany do synchronizacji czasu między węzłami, a technika DDC kompensuje opóźnienia wprowadzane przez sprzęt sieciowy.
+
+\subsubsection{Równania Synchronizacji White Rabbit}
+Równania synchronizacji White Rabbit opierają się na modelu opóźnień i korekcji czasowych.
+
+\[
+t_{\text{wr}} = t_{\text{ptp}} - \Delta t_{\text{ddc}}
+\]
+
+gdzie:
+\begin{itemize}
+    \item \( t_{\text{wr}} \) - zsynchronizowany czas White Rabbit
+    \item \( t_{\text{ptp}} \) - czas uzyskany z protokołu PTP
+    \item \( \Delta t_{\text{ddc}} \) - kompensacja opóźnień wprowadzanych przez sprzęt (DDC)
+\end{itemize}
+
+White Rabbit znajduje zastosowanie w aplikacjach takich jak akceleratory cząstek, systemy telekomunikacyjne, finansowe systemy transakcyjne oraz sieci energetyczne, gdzie precyzyjna synchronizacja czasu jest krytyczna.
