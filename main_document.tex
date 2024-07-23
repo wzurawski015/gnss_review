@@ -13,25 +13,12 @@
 \usepackage{array}
 \usepackage[backend=bibtex,style=numeric]{biblatex}
 \addbibresource{bibliography.bib}
-\geometry{a4paper}
+\geometry{a4paper, margin=1in}
+\sloppy % Dla naprawy underfull hbox
 
 \title{Kompleksowa Analiza Technologii GNSS}
 \author{Twoje Imię}
 \date{\today}
-
-\lstset{
-  language=Python,
-  basicstyle=\ttfamily\footnotesize,
-  keywordstyle=\color{blue},
-  commentstyle=\color{green},
-  stringstyle=\color{red},
-  showstringspaces=false,
-  breaklines=true,
-  frame=single,
-  numbers=left,
-  numberstyle=\tiny\color{gray},
-  captionpos=b
-}
 
 \begin{document}
 \maketitle
@@ -48,6 +35,10 @@
 \input{chapters/atmospheric_effects.tex}
 \input{chapters/gnss_ins_integration.tex}
 \input{chapters/conclusion.tex}
+
+%\chapter{Implementacja EKF w Pythonie}
+%\input{chapters/ekf_implementation.tex}
+
 
 \printbibliography
 

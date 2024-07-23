@@ -1,0 +1,33 @@
+\chapter{Implementacja EKF w Pythonie}
+
+PoniĹźej przedstawiono przykĹadowÄ implementacjÄ filtra Kalmana do integracji GNSS i INS w Pythonie:
+
+\begin{lstlisting}[caption={Implementacja EKF w Pythonie}, label={lst:EKF_Python}]
+import numpy as np
+
+class EKF:
+    def __init__(self, f, h, F, H, Q, R, P, x0):
+        self.f = f      # Funkcja przejĹcia stanu
+        self.h = h      # Funkcja obserwacji
+        self.F = F      # Jakobian funkcji przejĹcia stanu
+        self.H = H      # Jakobian funkcji obserwacji
+        self.Q = Q      # Macierz kowariancji szumu procesowego
+        self.R = R      # Macierz kowariancji szumu obserwacji
+        self.P = P      # Macierz kowariancji bĹÄdu estymacji
+        self.x = x0     # Estymata stanu
+
+    def predict(self, u):
+        # Predykcja stanu i kowariancji stanu
+        self.x = self.f(self.x, u)
+        self.P = self.F(self.x, u) @ self.P @ self.F(self.x, u).T + self.Q
+
+    def update(self, z):
+        # Obliczanie wzmocnienia Kalmana
+        y = z - self.h(self.x)
+        S = self.H(self.x) @ self.P @ self.H(self.x).T + self.R
+        K = self.P @ self.H(self.x).T @ np.linalg.inv(S)
+
+        # Aktualizacja estymaty stanu i kowariancji bĹÄdu estymacji
+        self.x = self.x + K @ y
+        self.P = self.P - K @ self.H(self.x) @ self.P
+\end{lstlisting}
