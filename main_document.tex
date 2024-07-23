@@ -1,6 +1,6 @@
-% projekt/główny_dokument.tex
-% project/main_document.tex
 \documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
@@ -11,8 +11,8 @@
 \usepackage{xcolor}
 \usepackage{hyperref}
 \usepackage{array}
-\usepackage{biblatex}
-\addbibresource{bibliografia.bib}
+\usepackage[backend=bibtex,style=numeric]{biblatex}
+\addbibresource{bibliography.bib}
 \geometry{a4paper}
 
 \title{Kompleksowa Analiza Technologii GNSS}
@@ -38,17 +38,17 @@
 
 \tableofcontents
 
-\input{rozdzialy/wstep.tex}
-\input{rozdzialy/sygnaly_i_czestotliwosci.tex}
-\input{rozdzialy/qam.tex}
-\input{rozdzialy/korekcja_sygnalow.tex}
-\input{rozdzialy/wspomaganie_satelitarne.tex}
-\input{rozdzialy/algorytmy_przetwarzania.tex}
-\input{rozdzialy/synchronizacja_czasu.tex}
-\input{rozdzialy/wplyw_atmosfery.tex}
-\input{rozdzialy/integracja_gnss_ins.tex}
-\input{rozdzialy/podsumowanie.tex}
+\input{chapters/introduction.tex}
+\input{chapters/signals_and_frequencies.tex}
+\input{chapters/qam.tex}
+\input{chapters/correction_techniques.tex}
+\input{chapters/satellite_augmentation_systems.tex}
+\input{chapters/signal_processing_algorithms.tex}
+\input{chapters/time_synchronization.tex}
+\input{chapters/atmospheric_effects.tex}
+\input{chapters/gnss_ins_integration.tex}
+\input{chapters/conclusion.tex}
 
-\printbibliography % or \bibliography{bibliografia}
+\printbibliography
 
 \end{document}

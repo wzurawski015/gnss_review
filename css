@@ -1,0 +1,18 @@
+gnss_doc_tex/
+├── gnss_review/
+│   ├── chapters/
+│   │   ├── introduction.tex
+│   │   ├── signals_and_frequencies.tex
+│   │   ├── qam.tex
+│   │   ├── correction_techniques.tex
+│   │   ├── satellite_augmentation_systems.tex
+│   │   ├── signal_processing_algorithms.tex
+│   │   ├── time_synchronization.tex
+│   │   ├── atmospheric_effects.tex
+│   │   ├── gnss_ins_integration.tex
+│   │   ├── conclusion.tex
+│   ├── code/
+│   │   ├── ekf_gnss_ins.py
+│   ├── bibliography.bib
+│   ├── main_document.tex
+│   ├── makefile

@@ -1,54 +1,21 @@
-% projekt/rozdzialy/integracja_gnss_ins.tex
-% project/chapters/gnss_ins_integration.tex
-\section{Integracja GNSS z Inertial Navigation Systems (INS)}
-Integracja GNSS z Inertial Navigation Systems (INS) pozwala na poprawę dokładności i niezawodności nawigacji poprzez połączenie zalet obu systemów. GNSS dostarcza dokładnych informacji o położeniu w długim okresie czasu, podczas gdy INS zapewnia wysoką dokładność w krótkim okresie, zwłaszcza w warunkach, gdzie sygnały GNSS mogą być zakłócone lub niedostępne.
+\section{Integracja GNSS z systemami inercjalnymi (INS)}
 
-\subsection{Podstawy Systemów Inercjalnych}
-Systemy inercjalne wykorzystują akcelerometry i żyroskopy do mierzenia przyspieszeń i prędkości kątowych, które są następnie integrowane w celu uzyskania pozycji i orientacji. Podstawowe równania dla systemu inercjalnego można zapisać jako:
+Integracja GNSS z Inertial Navigation Systems (INS) pozwala na poprawę dokładności i niezawodności nawigacji poprzez połączenie zalet obu systemów. GNSS zapewnia długoterminową stabilność i globalne pokrycie, podczas gdy INS zapewnia wysoką dokładność w krótkim czasie, zwłaszcza w warunkach, gdzie sygnały GNSS mogą być zakłócone lub niedostępne.
 
+\section{Model matematyczny}
+Podstawowe równania kinematyczne systemów GNSS-INS można wyrazić jako:
 \[
-\mathbf{v}(t) = \mathbf{v}(t_0) + \int_{t_0}^{t} \mathbf{a}(\tau) d\tau
+\mathbf{p}(t) = \mathbf{p}(t_0) + \int_{t_0}^{t} \mathbf{v}(\tau) \, d\tau + \frac{1}{2} \int_{t_0}^{t} \mathbf{a}(\tau) \, (t - t_0)^2 \, d\tau
 \]
-\[
-\mathbf{r}(t) = \mathbf{r}(t_0) + \int_{t_0}^{t} \mathbf{v}(\tau) d\tau
-\]
-
 gdzie:
 \begin{itemize}
-    \item \( \mathbf{v}(t) \) - prędkość w chwili \( t \)
-    \item \( \mathbf{a}(t) \) - przyspieszenie w chwili \( t \)
-    \item \( \mathbf{r}(t) \) - pozycja w chwili \( t \)
-    \item \( t_0 \) - czas początkowy
+    \item $\mathbf{p}(t)$ - pozycja w chwili $t$
+    \item $\mathbf{v}(t)$ - prędkość w chwili $t$
+    \item $\mathbf{a}(t)$ - przyspieszenie w chwili $t$
+    \item $t_0$ - czas początkowy
 \end{itemize}
 
-\subsection{Fuzja Danych GNSS i INS}
-Integracja GNSS i INS polega na fuzji danych z obu systemów w celu uzyskania bardziej dokładnych i niezawodnych informacji o położeniu i orientacji. W praktyce najczęściej stosuje się Filtr Kalmana rozszerzony (EKF) do fuzji danych GNSS i INS. Podstawowe równania EKF są następujące:
+\section{Implementacja EKF w Pythonie}
+Poniżej przedstawiono przykładową implementację filtra Kalmana do integracji GNSS i INS w Pythonie:
 
-\[
-\hat{x}_{k|k-1} = f(\hat{x}_{k-1|k-1}, u_{k-1})
-\]
-\[
-P_{k|k-1} = F_{k-1} P_{k-1|k-1} F_{k-1}^T + Q_{k-1}
-\]
-\[
-K_k = P_{k|k-1} H_k^T (H_k P_{k|k-1} H_k^T + R_k)^{-1}
-\]
-\[
-\hat{x}_{k|k} = \hat{x}_{k|k-1} + K_k (z_k - h(\hat{x}_{k|k-1}))
-\]
-\[
-P_{k|k} = (I - K_k H_k) P_{k|k-1}
-\]
-
-gdzie:
-\begin{itemize}
-    \item \( f(\cdot) \) - nieliniowa funkcja przejścia stanu
-    \item \( h(\cdot) \) - nieliniowa funkcja obserwacji
-    \item \( F_{k-1} \) - macierz Jacobiana funkcji przejścia stanu
-    \item \( H_k \) - macierz Jacobiana funkcji obserwacji
-\end{itemize}
-
-\subsection{Przykłady Implementacji Algorytmów GNSS i INS}
-Poniżej przedstawiono przykładową implementację filtra Kalmana do integracji danych GNSS i INS w Pythonie:
-
-\lstinputlisting[caption=Implementacja Filtra Kalmana do Integracji GNSS i INS w Pythonie]{ekf_gnss_ins.py}
+\lstinputlisting[language=Python, caption={Implementacja EKF w Pythonie}, label=lst:ekf]{/home/wz/gnss_doc_tex/gnss_review/code/ekf_gnss_ins.py}

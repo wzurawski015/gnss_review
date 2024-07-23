@@ -1,50 +1,24 @@
-% projekt/rozdzialy/qam.tex
+% projekt/chapters/qam.tex
 % project/chapters/qam.tex
-\section{Wzór Quadrature Amplitude Modulation}
-Wzór \textbf{modulacji QAM (Quadrature Amplitude Modulation)}, można wyrazić jako:
-\[
-s_{T(i)}(t) = P_{T} \sum_{u=-\infty}^{\infty} \left[ d_I(i)(u) \cdot g_I(t - uT_b) + i \cdot d_Q(i)(u) \cdot g_Q(t - uT_b) \right]
-\]
 
-Gdzie:
-\begin{itemize}
-    \item \( P_{T} \) – Współczynnik skalujący dla sygnału (często związany z mocą sygnału).
-    \item \( d_I(i)(u) \) – Ciąg symboli binarnych dla składowej in-phase (I) w \( u \)-tym symbolu.
-    \item \( d_Q(i)(u) \) – Ciąg symboli binarnych dla składowej kwadratury (Q) w \( u \)-tym symbolu.
-    \item \( g_I(t) \) – Funkcja odpowiadająca za kształt składowej in-phase (I), często nazywana funkcją odpowiedzi impulsowej.
-    \item \( g_Q(t) \) – Funkcja odpowiadająca za kształt składowej kwadratury (Q), również nazywana funkcją odpowiedzi impulsowej.
-    \item \( T_b \) – Okres symbolu (czas trwania jednego symbolu).
-    \item \( i \) – Indeks kanału lub nośnej (w kontekście wielu nośnych w systemach GNSS).
-\end{itemize}
+\section{Modulacja QAM}
 
-\subsection{Wyprowadzenie Wzoru QAM}
-W modulacji QAM, sygnał jest reprezentowany jako kombinacja dwóch sygnałów nośnych o tej samej częstotliwości, ale przesuniętych w fazie o 90 stopni (kwadraturowo). Sygnalizację można opisać wzorem:
+Wzór modulacji QAM (Quadrature Amplitude Modulation) można wyrazić jako:
+
 \[
 s(t) = I(t) \cos(2 \pi f_c t) - Q(t) \sin(2 \pi f_c t)
 \]
-gdzie \( I(t) \) i \( Q(t) \) są odpowiednio składowymi in-phase i kwadraturową, a \( f_c \) jest częstotliwością nośną.
 
-\subsubsection{Transformacja Fouriera}
-Analizując sygnał QAM w domenie częstotliwości za pomocą transformacji Fouriera:
+gdzie $I(t)$ i $Q(t)$ są odpowiednio składowymi in-phase i kwadraturową, a $f_c$ jest częstotliwością nośną. Analizując sygnał QAM w domenie częstotliwości za pomocą transformacji Fouriera:
 \[
-S(f) = \mathcal{F}\{s(t)\}
-\]
-Możemy uzyskać:
-\[
-S(f) = \frac{1}{2} \left[ I(f - f_c) + I(f + f_c) \right] - \frac{1}{2i} \left[ Q(f - f_c) - Q(f + f_c) \right]
+S(f) = \int_{-\infty}^{\infty} s(t) e^{-j 2 \pi f t} dt
 \]
 
-\subsubsection{Demodulacja Sygnałów QAM}
-Demodulacja sygnałów QAM polega na ekstrakcji składowych \( I(t) \) i \( Q(t) \) poprzez mnożenie sygnału \( s(t) \) przez \( \cos(2 \pi f_c t) \) i \( \sin(2 \pi f_c t) \), a następnie filtrację dolnoprzepustową:
-\[
-r_I(t) = s(t) \cos(2 \pi f_c t)
-\]
-\[
-r_Q(t) = s(t) \sin(2 \pi f_c t)
-\]
-\[
-I(t) = \text{LPF}\{ r_I(t) \}
-\]
-\[
-Q(t) = \text{LPF}\{ r_Q(t) \}
-\]
+\section{Komponenty Sygnału QAM}
+\begin{itemize}
+    \item $I(t)$ - Składowa in-phase (często nazywana jako I)
+    \item $Q(t)$ - Składowa kwadraturowa (często nazywana jako Q)
+    \item $P_T$ - Współczynnik skalujący dla sygnału (często związany z mocą sygnału)
+    \item $g_I(t)$ - Funkcja odpowiedzi impulsowej dla składowej in-phase
+    \item $g_Q(t)$ - Funkcja odpowiedzi impulsowej dla składowej kwadraturowej
+\end{itemize}
