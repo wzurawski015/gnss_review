@@ -1,0 +1,110 @@
+\section{Podstawy cyfrowego przetwarzania sygnałów oraz jego zastosowanie w GNSS}
+
+\subsection{Wprowadzenie}
+
+Cyfrowe przetwarzanie sygnałów (DSP) jest kluczowym narzędziem w nowoczesnych systemach telekomunikacyjnych, radarowych, obrazowania medycznego, a także w systemach nawigacyjnych takich jak Globalny System Nawigacji Satelitarnej (GNSS). DSP pozwala na efektywne przetwarzanie, analizę i interpretację sygnałów za pomocą technik cyfrowych, co zapewnia większą elastyczność, dokładność i niezawodność w porównaniu do tradycyjnych metod analogowych.
+
+\subsection{Podstawy cyfrowego przetwarzania sygnałów}
+
+\subsubsection{Definicja i przekształcenie sygnałów}
+
+Sygnał można zdefiniować jako funkcję matematyczną, która przekazuje informacje o pewnym zjawisku fizycznym. W DSP sygnały są reprezentowane jako sekwencje liczb, które można przetwarzać za pomocą operacji matematycznych. Przekształcenie sygnałów z domeny analogowej do cyfrowej odbywa się poprzez proces próbkowania i kwantyzacji.
+
+Próbkowanie polega na pobieraniu wartości sygnału analogowego w regularnych odstępach czasu. Jeśli sygnał $x(t)$ jest próbkowany z częstotliwością $f_s$, to próbki $x[n]$ są dane przez:
+\[ x[n] = x(nT_s) \]
+gdzie $T_s = \frac{1}{f_s}$ jest okresem próbkowania.
+
+Kwantyzacja polega na przydzieleniu każdej próbki sygnału analogowego do najbliższej wartości z ograniczonego zbioru poziomów kwantyzacji, co wprowadza błąd kwantyzacji:
+\[ q[n] = x[n] - x_q[n] \]
+
+\subsubsection{Analiza w dziedzinie czasu i częstotliwości}
+
+Analiza sygnałów w dziedzinie czasu polega na badaniu ich przebiegów czasowych. Z kolei analiza w dziedzinie częstotliwości, realizowana za pomocą transformaty Fouriera, umożliwia badanie sygnałów pod kątem ich zawartości częstotliwościowej. Dyskretna transformata Fouriera (DTF) jest definiowana jako:
+\[ X[k] = \sum_{n=0}^{N-1} x[n] e^{-j \frac{2\pi}{N} kn} \]
+gdzie $N$ jest liczbą próbek, $x[n]$ jest sygnałem w dziedzinie czasu, a $X[k]$ jest jego reprezentacją w dziedzinie częstotliwości.
+
+Szybka transformata Fouriera (FFT) jest algorytmem efektywnie obliczającym DFT, co jest szczególnie przydatne w DSP z uwagi na dużą liczbę operacji. Przykład zastosowania FFT do analizy sygnału GNSS może obejmować identyfikację składowych częstotliwościowych sygnału nawigacyjnego, co pozwala na odfiltrowanie zakłóceń i interferencji.
+
+\subsubsection{Filtracja cyfrowa}
+
+Filtracja cyfrowa jest jedną z podstawowych technik DSP, służącą do zmiany charakterystyki sygnału w celu usunięcia zakłóceń, wygładzenia sygnału lub wydobycia interesujących składowych. Filtry cyfrowe można podzielić na dwie główne kategorie: filtry o skończonej odpowiedzi impulsowej (FIR) oraz filtry o nieskończonej odpowiedzi impulsowej (IIR).
+
+Filtr FIR jest opisany równaniem:
+\[ y[n] = \sum_{k=0}^{M-1} h[k] x[n-k] \]
+gdzie $h[k]$ jest odpowiedzią impulsową filtra, a $M$ jest długością filtra. Filtry FIR są zawsze stabilne i posiadają liniową fazę.
+
+Filtr IIR jest opisany równaniem:
+\[ y[n] = \sum_{k=0}^{M-1} b_k x[n-k] - \sum_{j=1}^{N-1} a_j y[n-j] \]
+gdzie $b_k$ i $a_j$ są współczynnikami filtra. Filtry IIR mogą być bardziej efektywne obliczeniowo, ale mogą wprowadzać zniekształcenia fazowe i mogą być niestabilne.
+
+\subsection{Zastosowanie cyfrowego przetwarzania sygnałów w GNSS}
+
+\subsubsection{Demodulacja i dekodowanie sygnałów GNSS}
+
+Sygnały GNSS są modulowane za pomocą technik takich jak modulacja fazy (PSK) i są transmitowane przez satelity na różnych częstotliwościach. DSP jest wykorzystywane do demodulacji tych sygnałów, czyli odzyskiwania danych nawigacyjnych zakodowanych w sygnale nośnym. Proces ten obejmuje odfiltrowanie zakłóceń, synchronizację fazy i częstotliwości, a następnie dekodowanie danych.
+
+Przykładowo, sygnał BPSK (Binary Phase Shift Keying) jest demodulowany poprzez pomnożenie odebranego sygnału $r(t)$ przez nośną z odpowiednią fazą:
+\[ r(t) \cdot \cos(2\pi f_c t) \]
+Następnie sygnał jest filtrowany dolnoprzepustowo w celu usunięcia składowych wysokoczęstotliwościowych.
+
+W przypadku sygnałów GNSS, demodulacja obejmuje również odfiltrowanie kodu pseudolosowego (PRN), który jest używany do rozróżniania sygnałów z różnych satelitów. Proces ten jest realizowany za pomocą korelacji z lokalnie generowanym kodem PRN.
+
+\subsubsection{Korelacja sygnałów GNSS}
+
+Korelacja jest kluczowym elementem w odbiornikach GNSS, wykorzystywanym do określania czasu przybycia sygnałów satelitarnych i obliczania pseudoodległości do satelitów. Algorytmy DSP są używane do obliczania korelacji między odebranym sygnałem $r[n]$ a znanym wzorcem $s[n]$:
+\[ R[k] = \sum_{n=0}^{N-1} r[n] s[n+k] \]
+Wysoka dokładność korelacji jest niezbędna do dokładnego określenia pozycji użytkownika.
+
+Przykład: Jeśli odebrany sygnał GNSS jest zakodowany z użyciem kodu C/A (Coarse/Acquisition), odbiornik generuje lokalnie kopię tego kodu i przesuwa ją w czasie, aby znaleźć maksymalną korelację z odebranym sygnałem. Wartość przesunięcia czasowego, przy którym korelacja jest maksymalna, odpowiada czasowi przybycia sygnału.
+
+\subsubsection{Filtracja i estymacja pozycji}
+
+Odbiorniki GNSS wykorzystują techniki DSP do filtrowania sygnałów i estymacji pozycji użytkownika. Algorytmy takie jak filtr Kalmana są stosowane do integracji danych z różnych satelitów oraz czujników inercyjnych (INS), co pozwala na uzyskanie bardziej dokładnych i niezawodnych wyników nawigacyjnych.
+
+Filtr Kalmana umożliwia dynamiczne śledzenie pozycji i prędkości użytkownika poprzez estymację stanu na podstawie modeli matematycznych i pomiarów. Równania filtra Kalmana są następujące:
+
+1. Predykcja stanu:
+\[ \hat{x}_{k|k-1} = F \hat{x}_{k-1|k-1} + B u_k \]
+2. Predykcja kowariancji błędu:
+\[ P_{k|k-1} = F P_{k-1|k-1} F^T + Q \]
+3. Aktualizacja z pomiarem:
+\[ K_k = P_{k|k-1} H^T (H P_{k|k-1} H^T + R)^{-1} \]
+\[ \hat{x}_{k|k} = \hat{x}_{k|k-1} + K_k (z_k - H \hat{x}_{k|k-1}) \]
+\[ P_{k|k} = (I - K_k H) P_{k|k-1} \]
+
+gdzie:
+- $\hat{x}$ jest estymatą stanu,
+- $P$ jest macierzą kowariancji błędu,
+- $K$ jest macierzą wzmocnienia Kalmana,
+- $F$ jest macierzą przejścia stanu,
+- $B$ jest macierzą wejść kontrolnych,
+- $Q$ jest macierzą kowariancji szumu procesu,
+- $H$ jest macierzą obserwacji,
+- $R$ jest macierzą kowariancji szumu pomiarowego,
+- $z$ jest wektorem pomiarów.
+
+\subsubsection{Przykłady zastosowania DSP w GNSS}
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|c|}
+\hline
+\textbf{Technika DSP} & \textbf{Zastosowanie w GNSS} \\
+\hline
+Próbkowanie & Konwersja sygnału analogowego na cyfrowy \\
+Kwantyzacja & Reprezentacja cyfrowa sygnału \\
+Transformata Fouriera (FFT) & Analiza częstotliwościowa sygnałów GNSS \\
+Filtry FIR & Usuwanie zakłóceń i szumów \\
+Filtry IIR & Efektywna obliczeniowo filtracja sygnałów \\
+Demodulacja PSK & Odbiór i dekodowanie sygnałów nawigacyjnych \\
+Korelacja & Określanie czasu przybycia sygnałów i pseudoodległości \\
+Filtr Kalmana & Estymacja pozycji i prędkości użytkownika \\
+\hline
+\end{tabular}
+\caption{Techniki cyfrowego przetwarzania sygnałów i ich zastosowanie w GNSS}
+\label{tab:techniques_gnss}
+\end{table}
+
+\subsection{Podsumowanie}
+
+Cyfrowe przetwarzanie sygnałów odgrywa kluczową rolę w nowoczesnych systemach GNSS, umożliwiając efektywną demodulację, korelację i filtrację sygnałów nawigacyjnych. Techniki DSP pozwalają na uzyskanie wysokiej dokładności i niezawodności systemów nawigacyjnych, co jest niezbędne w wielu zastosowaniach, od nawigacji samochodowej po precyzyjne rolnictwo i monitorowanie stanu środowiska. W przyszłości rozwój nowych algorytmów DSP i ich implementacja w systemach GNSS będą nadal odgrywać kluczową rolę w poprawie dokładności i funkcjonalności tych systemów.

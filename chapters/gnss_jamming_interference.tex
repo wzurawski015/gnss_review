@@ -1,0 +1,54 @@
+% gnss_jamming_interference.tex
+
+\section{GNSS Jamming, Spoofing, and Meaconing (Zakłócenia sygnałów GNSS)}
+
+\subsection{Wprowadzenie}
+
+Zakłócenia sygnałów GNSS, takie jak jamming, spoofing i meaconing, stanowią poważne zagrożenie dla systemów nawigacyjnych. Te zakłócenia mogą prowadzić do utraty sygnału, fałszywych odczytów pozycji oraz innych problemów wpływających na niezawodność i dokładność GNSS.
+
+\subsection{Jamming (Zakłócanie)}
+
+Jamming polega na nadawaniu silnych sygnałów na tych samych częstotliwościach co sygnały GNSS, co powoduje zagłuszenie sygnałów satelitarnych. Może to prowadzić do całkowitej utraty sygnału GNSS i uniemożliwić odbiornikowi określenie pozycji. Przykłady metod przeciwdziałania jammingowi obejmują:
+
+\begin{itemize}
+    \item Wykorzystanie technik antenowych o wysokiej kierunkowości.
+    \item Zastosowanie filtrowania sygnałów.
+    \item Implementacja algorytmów detekcji i unikania zakłóceń.
+\end{itemize}
+
+\subsection{Spoofing (Fałszowanie)}
+
+Spoofing polega na wysyłaniu fałszywych sygnałów GNSS w celu wprowadzenia odbiornika w błąd. Atakujący generuje sygnały o wyższej mocy niż sygnały rzeczywiste, co powoduje, że odbiornik odbiera fałszywe dane. Skutki spoofingu mogą obejmować:
+
+\begin{itemize}
+    \item Fałszywe odczyty pozycji.
+    \item Wprowadzenie użytkowników w błąd.
+    \item Możliwość przejęcia kontroli nad autonomicznymi systemami.
+\end{itemize}
+
+Przykłady metod przeciwdziałania spoofingowi obejmują:
+
+\begin{itemize}
+    \item Wykorzystanie technik autentykacji sygnałów.
+    \item Monitorowanie anomalii w danych GNSS.
+    \item Zastosowanie wieloczęstotliwościowych odbiorników do porównywania sygnałów z różnych pasm.
+\end{itemize}
+
+\subsection{Meaconing (Przekazywanie)}
+
+Meaconing polega na przechwytywaniu sygnałów GNSS i retransmitowaniu ich w innym miejscu, co powoduje, że odbiornik interpretuje fałszywą pozycję jako rzeczywistą. Metody przeciwdziałania meaconingowi są podobne do tych stosowanych w przypadku spoofingu.
+
+\subsection{Środki Zaradcze}
+
+Skuteczne środki zaradcze przeciwko zakłóceniom GNSS obejmują kombinację technik sprzętowych i programowych. Przykłady to:
+
+\begin{itemize}
+    \item Implementacja zaawansowanych algorytmów filtrowania i detekcji zakłóceń.
+    \item Zastosowanie anten adaptacyjnych.
+    \item Integracja z systemami inercyjnymi (INS) i innymi czujnikami wspomagającymi nawigację.
+\end{itemize}
+
+\subsection{Podsumowanie}
+
+Zakłócenia sygnałów GNSS, takie jak jamming, spoofing i meaconing, mogą mieć poważne konsekwencje w nawigacji. Środki zaradcze obejmują stosowanie technik autentykacji sygnałów, monitorowanie anomalii w danych GNSS oraz wykorzystanie wieloczęstotliwościowych odbiorników do porównywania sygnałów z różnych pasm. W przyszłości rozwój zaawansowanych technologii przeciwdziałania zakłóceniom GNSS będzie kluczowy dla zapewnienia bezpieczeństwa i niezawodności systemów nawigacyjnych. Opisane m.in. w \cite{maritime_global_security}.
+
